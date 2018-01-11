@@ -1,8 +1,8 @@
-import angular from 'angular';
-import uiRouter from '@uirouter/angularjs';
+let angular = require('angular');
+require('@uirouter/angularjs');
 
-let appModule = angular.module('app', [uiRouter]);
+let appModule = angular.module('app', ['ui.router']);
 
 export {
     appModule
-}
+};

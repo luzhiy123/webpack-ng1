@@ -6,7 +6,7 @@ require('./controllers/index');
 
 require('./styles/main.scss');
 
-appModule.config(($stateProvider, $urlRouterProvider) => {
+appModule.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
     $urlRouterProvider.otherwise('/home');
 
     $stateProvider
@@ -16,4 +16,4 @@ appModule.config(($stateProvider, $urlRouterProvider) => {
             controller: 'HomeCtrl',
             controllerAs: 'vm'
         });
-});
+}]);
