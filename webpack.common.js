@@ -11,10 +11,6 @@ module.exports = {
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             template: 'src/app/index.html'
-        }),
-        new webpack.ProvidePlugin({
-            $: 'jquery',
-            jquery: 'jquery'
         })
     ],
     output: {
@@ -40,7 +36,13 @@ module.exports = {
             }, {
                 loader: 'sass-loader' // 将 Sass 编译成 CSS
             }]
-
+        }, {
+            test: /\.css$/,
+            use: [{
+                loader: 'style-loader' // 将 JS 字符串生成为 style 节点
+            }, {
+                loader: 'css-loader' // 将 CSS 转化成 CommonJS 模块
+            }]
         }, {
             test: /\.js$/,
             exclude: /(node_modules|bower_components)/,
@@ -49,6 +51,16 @@ module.exports = {
                 options: {
                     presets: ['@babel/preset-env']
                 }
+            }
+        }, {
+            test: /\.(eot|woff|ttf|woff2)$/,
+            use: {
+                loader: 'file-loader'
+            }
+        }, {
+            test: /\.svg$/,
+            use: {
+                loader: 'svg-inline-loader'
             }
         }]
     }
