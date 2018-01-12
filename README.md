@@ -9,9 +9,9 @@
 
 # 遇到的问题
 - [x] angularjs压缩问题  
-    依赖注入方式（grunt中用在build时解决）
+    依赖注入方式（grunt中用在build时解决）  
     ($q) => {} 改为 [$q, ($q) => {}]
-- [x]babel-es2017  
+- [x] babel-es2017  
     原想引入babel-es2017，后来发现不需要
 - [x] 组件依赖  
     front-tb-ui依赖 lodash、angular-base64、angular-cookies、angular-ui-bootstrap以及bootstrap的css
