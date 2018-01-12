@@ -3,7 +3,7 @@
 - [x] angularJs
 - [x] scss
 - [x] eslint
-- [ ] es2017
+- [x] es6+编辑成5
 - [ ] 原插件引入
 - [ ] 重构小项目
 

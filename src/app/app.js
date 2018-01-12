@@ -5,7 +5,6 @@ let homeTemplate = require('./view/home.html');
 require('./controllers/index');
 
 require('./styles/main.scss');
-
 appModule.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
     $urlRouterProvider.otherwise('/home');
 

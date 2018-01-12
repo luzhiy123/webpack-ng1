@@ -1,25 +1,11 @@
 const webpack = require('webpack'),
     path = require('path'),
     CleanWebpackPlugin = require('clean-webpack-plugin'),
-    HtmlWebpackPlugin = require('html-webpack-plugin'),
-
-    node_modules = path.resolve(__dirname, 'node_modules');
-    // pathToAngular = path.resolve(node_modules, 'angular/index.js'),
-    // pathToAngularUiRouter = path.resolve(node_modules, 'angular-ui-router/release/angular-ui-router.js');
+    HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = {
     entry: {
-        // vendors: [
-        //     'angular',
-        //     'angular-ui-router'
-        // ],
         app: './src/app/app.js'
-    },
-    resolve: {
-        alias: {
-            // 'angular': pathToAngular,
-            // 'angular-ui-router': pathToAngularUiRouter
-        }
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
@@ -28,8 +14,7 @@ module.exports = {
         }),
         new webpack.ProvidePlugin({
             $: 'jquery',
-            jquery: 'jquery',
-            // angular: 'angular'
+            jquery: 'jquery'
         })
     ],
     output: {
@@ -57,15 +42,14 @@ module.exports = {
             }]
 
         }, {
-            // test: /\.js$/,
-            // exclude: /(node_modules|bower_components)/,
-            // use: {
-            //     loader: 'babel-loader',
-            //     options: {
-            //         presets: ['@babel/preset-env'],
-            //         plugins: ['@babel/transform-runtime']
-            //     }
-            // }
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }
         }]
     }
 };
