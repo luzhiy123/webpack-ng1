@@ -1,67 +1,105 @@
 const webpack = require('webpack'),
     path = require('path'),
     CleanWebpackPlugin = require('clean-webpack-plugin'),
-    HtmlWebpackPlugin = require('html-webpack-plugin');
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 module.exports = {
     entry: {
-        app: './src/app/app.js'
+        main: './src/app/app.js'
     },
     plugins: [
         new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             template: 'src/app/index.html'
-        })
+        }),
+        new ExtractTextPlugin({
+            filename: (getPath) => {
+                return getPath('css/[name].[hash].css').replace('css/js', 'css');
+            },
+            allChunks: true
+        }),
     ],
     output: {
-        filename: '[name].js',
-        publicPath: '/',
-        path: path.resolve(__dirname, 'dist')
+        filename: 'js/[name].[hash].js',
+        path: path.resolve(__dirname, 'dist'),
+        publicPath: '/'
+    },
+    optimization: {
+        runtimeChunk: {
+            name: 'vendor'
+        },
+        splitChunks: {
+            cacheGroups: {
+                default: false,
+                commons: {
+                    test: /node_modules/,
+                    name: 'vendor',
+                    chunks: 'initial',
+                    minSize: 1
+                }
+            }
+        }
     },
     module: {
         rules: [{
-            test: /\.(html)$/,
-            use: {
-                loader: 'html-loader',
-                options: {
-                    attrs: [':data-src']
+                test: /\.(html)$/,
+                use: {
+                    loader: 'html-loader',
+                    options: {
+                        attrs: [':data-src'],
+                        minimize: true
+                    }
                 }
-            }
-        }, {
-            test: /\.scss$/,
-            use: [{
-                loader: 'style-loader' // 将 JS 字符串生成为 style 节点
             }, {
-                loader: 'css-loader' // 将 CSS 转化成 CommonJS 模块
+                test: /\.scss$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: 'style-loader',
+                    //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
+                    use: ['css-loader', 'sass-loader']
+                })
             }, {
-                loader: 'sass-loader' // 将 Sass 编译成 CSS
-            }]
-        }, {
-            test: /\.css$/,
-            use: [{
-                loader: 'style-loader' // 将 JS 字符串生成为 style 节点
+                test: /\.css$/,
+                use: ExtractTextPlugin.extract({
+                    fallback: "style-loader",
+                    use: "css-loader"
+                })
+            },
+            {
+                test: /\.(png|svg|jpg|gif)$/,
+                use: [
+                    'file-loader'
+                ]
+            },
+            {
+                test: /\.(woff|woff2|eot|ttf|otf)$/,
+                use: [
+                    'file-loader'
+                ]
+            },
+            {
+                test: /\.(csv|tsv)$/,
+                use: [
+                    'csv-loader'
+                ]
+            },
+            {
+                test: /\.xml$/,
+                use: [
+                    'xml-loader'
+                ]
             }, {
-                loader: 'css-loader' // 将 CSS 转化成 CommonJS 模块
-            }]
-        }, {
-            test: /\.js$/,
-            exclude: /(node_modules|bower_components)/,
-            use: {
-                loader: 'babel-loader',
-                options: {
-                    presets: ['@babel/preset-env']
+                test: /\.js$/,
+                exclude: /(node_modules|bower_components)/,
+                use: {
+                    loader: 'babel-loader'
                 }
+            },
+            {
+                test: /\.tsx?$/,
+                use: 'ts-loader',
+                exclude: /node_modules/
             }
-        }, {
-            test: /\.(eot|woff|ttf|woff2)$/,
-            use: {
-                loader: 'file-loader'
-            }
-        }, {
-            test: /\.svg$/,
-            use: {
-                loader: 'svg-inline-loader'
-            }
-        }]
+        ]
     }
 };
