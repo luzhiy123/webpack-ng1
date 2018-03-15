@@ -1,5 +1,4 @@
-const webpack = require('webpack'),
-    path = require('path'),
+const path = require('path'),
     CleanWebpackPlugin = require('clean-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -42,7 +41,8 @@ module.exports = {
         }
     },
     module: {
-        rules: [{
+        rules: [
+            {
                 test: /\.(html)$/,
                 use: {
                     loader: 'html-loader',
@@ -61,8 +61,8 @@ module.exports = {
             }, {
                 test: /\.css$/,
                 use: ExtractTextPlugin.extract({
-                    fallback: "style-loader",
-                    use: "css-loader"
+                    fallback: 'style-loader',
+                    use: 'css-loader'
                 })
             },
             {

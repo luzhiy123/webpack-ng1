@@ -10,6 +10,7 @@ module.exports = {
         "_": true,
         "ga": true,
         "process": true,
+        "__dirname": true
     },
     "extends": "eslint:recommended",
     "parserOptions": {
