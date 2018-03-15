@@ -1,18 +1,30 @@
-let { appModule } = require('./modules/app-module'); 
+const angular = require('angular');
 
-let homeTemplate = require('./view/home.html');
+//js插件
+require('jquery');
+require('lodash');
+require('angular-base64');
+require('angular-cookies');
+require('angular-ui-bootstrap');
+require('@uirouter/angularjs');
+require('front-tb-ui');
 
-require('./controllers/index');
+//css插件
+require('bootstrap/dist/css/bootstrap.css');
+require('front-tb-ui/dist/css/main.css');
 
-require('./styles/main.scss');
-appModule.config(['$stateProvider', '$urlRouterProvider', ($stateProvider, $urlRouterProvider) => {
-    $urlRouterProvider.otherwise('/home');
+//js模块
+require('./home/moudes.js');
 
-    $stateProvider
-        .state('home', {
-            url: '/home',
-            template: homeTemplate,
-            controller: 'HomeCtrl',
-            controllerAs: 'vm'
-        });
-}]);
+const { config } = require('./config.js');
+
+//css模块
+
+angular.module('app', [
+    'base64',
+    'ngCookies',
+    'ui.bootstrap',
+    'ui.router',
+    'tb.ui',
+    'dt.home'
+]).config(config);
