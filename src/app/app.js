@@ -15,9 +15,6 @@ require('front-tb-ui/dist/css/main.css');
 
 //js模块
 require('./home/moudes.js');
-
-const { config } = require('./config.js');
-
 //css模块
 
 angular.module('app', [
@@ -27,4 +24,6 @@ angular.module('app', [
     'ui.router',
     'tb.ui',
     'dt.home'
-]).config(config);
+]).config( /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
+    $urlRouterProvider.otherwise('/home');
+});

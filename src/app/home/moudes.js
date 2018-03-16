@@ -5,6 +5,7 @@ const { HomeCtrl } = require('./ctrls.js');
 
 require('./home.scss');
 
+/* @ngInject */
 function homeRoute($stateProvider) {
     $stateProvider
         .state('home', {
@@ -14,8 +15,6 @@ function homeRoute($stateProvider) {
             controllerAs: 'vm'
         });
 }
-
-homeRoute.$inject = ['$stateProvider'];
 
 let angular = require('angular');
 angular.module('dt.home', []).config(homeRoute);

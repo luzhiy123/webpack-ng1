@@ -1,5 +1,4 @@
 const path = require('path'),
-    CleanWebpackPlugin = require('clean-webpack-plugin'),
     HtmlWebpackPlugin = require('html-webpack-plugin'),
     ExtractTextPlugin = require('extract-text-webpack-plugin');
 
@@ -8,7 +7,6 @@ module.exports = {
         main: './src/app/app.js'
     },
     plugins: [
-        new CleanWebpackPlugin(['dist']),
         new HtmlWebpackPlugin({
             template: 'src/app/index.html'
         }),
@@ -17,7 +15,7 @@ module.exports = {
                 return getPath('css/[name].[hash].css').replace('css/js', 'css');
             },
             allChunks: true
-        }),
+        })
     ],
     output: {
         filename: 'js/[name].[hash].js',
@@ -41,65 +39,62 @@ module.exports = {
         }
     },
     module: {
-        rules: [
-            {
-                test: /\.(html)$/,
-                use: {
-                    loader: 'html-loader',
-                    options: {
-                        attrs: [':data-src'],
-                        minimize: true
-                    }
+        rules: [{
+            test: /\.(html)$/,
+            use: {
+                loader: 'html-loader',
+                options: {
+                    attrs: [':data-src'],
+                    minimize: true
                 }
-            }, {
-                test: /\.scss$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
-                    use: ['css-loader', 'sass-loader']
-                })
-            }, {
-                test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    fallback: 'style-loader',
-                    use: 'css-loader'
-                })
-            },
-            {
-                test: /\.(png|svg|jpg|gif)$/,
-                use: [
-                    'file-loader'
-                ]
-            },
-            {
-                test: /\.(woff|woff2|eot|ttf|otf)$/,
-                use: [
-                    'file-loader'
-                ]
-            },
-            {
-                test: /\.(csv|tsv)$/,
-                use: [
-                    'csv-loader'
-                ]
-            },
-            {
-                test: /\.xml$/,
-                use: [
-                    'xml-loader'
-                ]
-            }, {
-                test: /\.js$/,
-                exclude: /(node_modules|bower_components)/,
-                use: {
-                    loader: 'babel-loader'
-                }
-            },
-            {
-                test: /\.tsx?$/,
-                use: 'ts-loader',
-                exclude: /node_modules/
             }
-        ]
+        }, {
+            test: /\.scss$/,
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
+                use: ['css-loader', 'sass-loader']
+            })
+        }, {
+            test: /\.css$/,
+            use: ExtractTextPlugin.extract({
+                fallback: 'style-loader',
+                use: 'css-loader'
+            })
+        }, {
+            test: /\.(png|svg|jpg|gif)$/,
+            use: [
+                'file-loader'
+            ]
+        }, {
+            test: /\.(woff|woff2|eot|ttf|otf)$/,
+            use: [
+                'file-loader'
+            ]
+        }, {
+            test: /\.(csv|tsv)$/,
+            use: [
+                'csv-loader'
+            ]
+        }, {
+            test: /\.xml$/,
+            use: [
+                'xml-loader'
+            ]
+        }, {
+            test: /\.js$/,
+            exclude: /(node_modules|bower_components)/,
+            use: [{
+                loader: 'ng-annotate-loader',
+                options: {
+                    ngAnnotate: 'ng-annotate-patched',
+                }
+            }, {
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-env']
+                }
+            }]
+        }]
     }
 };
