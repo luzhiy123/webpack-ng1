@@ -14,16 +14,22 @@ require('bootstrap/dist/css/bootstrap.css');
 require('front-tb-ui/dist/css/main.css');
 
 //js模块
-require('./home/moudes.js');
+require('./ng/moudes.js');
 //css模块
 
-angular.module('app', [
-    'base64',
-    'ngCookies',
-    'ui.bootstrap',
-    'ui.router',
-    'tb.ui',
-    'dt.home'
-]).config( /* @ngInject */ ($stateProvider, $urlRouterProvider) => {
-    $urlRouterProvider.otherwise('/home');
-});
+angular
+    .module('app', [
+        'base64',
+        'ngCookies',
+        'ui.bootstrap',
+        'ui.router',
+        'tb.ui',
+        'model-ng'
+    ])
+    .config( /* @ngInject */ ($locationProvider, $stateProvider, $urlRouterProvider) => {
+        $locationProvider.html5Mode(true);
+        $urlRouterProvider.otherwise('/ng');
+    })
+    .factory('config', /* @ngInject */ () => {
+        return {};
+    });

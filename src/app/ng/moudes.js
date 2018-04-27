@@ -1,15 +1,15 @@
 
 
-const homeTemplate = require('./template/home.html');
+const homeTemplate = require('./template/index.html');
 const { HomeCtrl } = require('./ctrls.js');
 
-require('./home.scss');
+require('./index.scss');
 
 /* @ngInject */
-function homeRoute($stateProvider) {
+function ngRoute($stateProvider) {
     $stateProvider
-        .state('home', {
-            url: '/home',
+        .state('ng', {
+            url: '/ng',
             template: homeTemplate,
             controller: HomeCtrl,
             controllerAs: 'vm'
@@ -17,7 +17,7 @@ function homeRoute($stateProvider) {
 }
 
 let angular = require('angular');
-angular.module('dt.home', []).config(homeRoute);
+angular.module('model-ng', []).config(ngRoute);
 export {
-    homeRoute
+    ngRoute
 };

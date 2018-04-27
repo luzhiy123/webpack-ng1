@@ -1,12 +1,24 @@
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const common = require('./webpack.common.js');
+const common = require('./webpack.common.js'),
+    apiService = 'http://localhost:8008';
 
 module.exports = merge(common, {
     devtool: 'inline-source-map',
     devServer: {
         contentBase: './dist',
-        hot: true
+        publicPath: '/home/',
+        historyApiFallback: {
+            index: '/home/react.html'
+        },
+        hot: true,
+        proxy: {
+            '/api': apiService,
+            '/config.js': apiService,
+            '/static': apiService,
+            '/media/contents': apiService,
+            '/favicon.ico': apiService
+        }
     },
     plugins: [
         new webpack.NamedModulesPlugin(),

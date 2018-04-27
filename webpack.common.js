@@ -4,11 +4,19 @@ const path = require('path'),
 
 module.exports = {
     entry: {
-        main: './src/app/app.js'
+        main: './src/app/app.js',
+        react: './src/app/react.jsx'
     },
     plugins: [
         new HtmlWebpackPlugin({
-            template: 'src/app/index.html'
+            chunks: ['vendor', 'main'],
+            template: 'src/app/index.html',
+            filename: 'index.html'
+        }),
+        new HtmlWebpackPlugin({
+            chunks: ['vendor', 'react'],
+            template: 'src/app/react.html',
+            filename: 'react.html'
         }),
         new ExtractTextPlugin({
             filename: (getPath) => {
@@ -19,8 +27,7 @@ module.exports = {
     ],
     output: {
         filename: 'js/[name].[hash].js',
-        path: path.resolve(__dirname, 'dist'),
-        publicPath: '/'
+        path: path.resolve(__dirname, 'dist')
     },
     optimization: {
         runtimeChunk: {
@@ -52,25 +59,24 @@ module.exports = {
             test: /\.scss$/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
-                //如果需要，可以在 sass-loader 之前将 resolve-url-loader 链接进来
-                use: ['css-loader', 'sass-loader']
+                use: ['css-loader', 'sass-loader'],
+                publicPath: '../'
             })
         }, {
             test: /\.css$/,
             use: ExtractTextPlugin.extract({
                 fallback: 'style-loader',
-                use: 'css-loader'
+                use: 'css-loader',
+                publicPath: '../'
             })
         }, {
-            test: /\.(png|svg|jpg|gif)$/,
-            use: [
-                'file-loader'
-            ]
-        }, {
-            test: /\.(woff|woff2|eot|ttf|otf)$/,
-            use: [
-                'file-loader'
-            ]
+            test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
+            use: {
+                loader: 'file-loader',
+                options: {
+                    name: 'assets/[name].[ext]'
+                }
+            }
         }, {
             test: /\.(csv|tsv)$/,
             use: [
@@ -93,6 +99,15 @@ module.exports = {
                 loader: 'babel-loader',
                 options: {
                     presets: ['@babel/preset-env']
+                }
+            }]
+        }, {
+            test: /\.jsx$/,
+            exclude: /node_modules/,
+            use: [{
+                loader: 'babel-loader',
+                options: {
+                    presets: ['@babel/preset-react']
                 }
             }]
         }]

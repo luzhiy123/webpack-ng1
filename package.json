@@ -6,9 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "watch": "webpack --watch",
-    "server": "node dev-server.js",
-    "start": "webpack-dev-server --open --config webpack.dev.js",
-    "build": "webpack --config webpack.prod.js"
+    "start": "webpack-dev-server --mode development  --open --config webpack.dev.js",
+    "build": "webpack --mode production --config webpack.prod.js"
   },
   "dependencies": {
     "@uirouter/angularjs": "^1.0.15",
@@ -19,11 +18,14 @@
     "bootstrap": "3.3.7",
     "front-tb-ui": "git+ssh://git@gitlab.testbird.io:frontend/front-tb-ui.git#npm",
     "jquery": "^3.3.1",
-    "lodash": "^4.17.5"
+    "lodash": "^4.17.5",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0-beta.42",
     "@babel/preset-env": "^7.0.0-beta.42",
+    "@babel/preset-react": "^7.0.0-beta.46",
     "babel-loader": "8.0.0-beta.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.10",
