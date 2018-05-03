@@ -1,7 +1,8 @@
 const angular = require('angular');
 
 //js插件
-require('jquery');
+import jQuery from 'jquery';
+window.$ = window.jQuery = window.jq = jQuery;
 require('lodash');
 require('angular-base64');
 require('angular-cookies');

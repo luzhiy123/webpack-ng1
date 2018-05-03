@@ -1,16 +1,35 @@
+import React from 'react';
+import ReactDOM from 'react-dom';
+import { LocaleProvider, DatePicker, message } from 'antd';
+import 'antd/dist/antd.css';
+// 由于 antd 组件的默认文案是英文，所以需要修改为中文
+import zhCN from 'antd/lib/locale-provider/zh_CN';
+import moment from 'moment';
+import 'moment/locale/zh-cn';
 
-import React, {Component} from 'react';
-import ReactDom from 'react-dom';
+moment.locale('zh-cn');
 
-export default class Hello extends Component {
+class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            date: '',
+        };
+    }
+    handleChange(date) {
+        message.info('您选择的日期是: ' + (date ? date.toString() : ''));
+        this.setState({ date });
+    }
     render() {
         return (
-            <div>
-                Hello,React!
-            </div>
+            <LocaleProvider locale={zhCN}>
+                <div style={{ width: 400, margin: '100px auto' }}>
+                    <DatePicker onChange={value => this.handleChange(value)} />
+                    <div style={{ marginTop: 20 }}>当前日期：{this.state.date && this.state.date.toString()}</div>
+                </div>
+            </LocaleProvider>
         );
     }
 }
 
-ReactDom.render(
-    <Hello/>, document.getElementById('root'));
+ReactDOM.render(<App />, document.getElementById('root'));

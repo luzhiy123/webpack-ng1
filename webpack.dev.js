@@ -9,7 +9,7 @@ module.exports = merge(common, {
         contentBase: './dist',
         publicPath: '/home/',
         historyApiFallback: {
-            index: '/home/react.html'
+            index: '/home/'
         },
         hot: true,
         proxy: {

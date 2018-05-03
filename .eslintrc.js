@@ -12,14 +12,19 @@ module.exports = {
         "process": true,
         "__dirname": true
     },
+    "plugins": [
+        "react"
+    ],
     "extends": "eslint:recommended",
     "parserOptions": {
         "ecmaFeatures": {
+            "experimentalObjectRestSpread": true,
             "jsx": true
         },
         "sourceType": "module"
     },
     "rules": {
+        "react/jsx-uses-vars": 2,
         "indent": [
             "error",
             4

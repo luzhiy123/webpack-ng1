@@ -9,12 +9,12 @@ module.exports = {
     },
     plugins: [
         new HtmlWebpackPlugin({
-            chunks: ['vendor', 'main'],
+            chunks: ['ng-vendor', 'commons', 'main'],
             template: 'src/app/index.html',
             filename: 'index.html'
         }),
         new HtmlWebpackPlugin({
-            chunks: ['vendor', 'react'],
+            chunks: ['react-vendor', 'commons', 'react'],
             template: 'src/app/react.html',
             filename: 'react.html'
         }),
@@ -30,17 +30,60 @@ module.exports = {
         path: path.resolve(__dirname, 'dist')
     },
     optimization: {
-        runtimeChunk: {
-            name: 'vendor'
-        },
         splitChunks: {
             cacheGroups: {
-                default: false,
+                ngVendor: {
+                    test: (module, chunks) => {
+                        const names = chunks
+                            .map(c => c.name)
+                            .concat(module.nameForCondition ? [module.nameForCondition()] : [])
+                            .filter(Boolean);
+                        let res = [false, false, true];
+                        for (const name of names) {
+                            if (name.indexOf('node_modules') > -1) res[0] = true;
+                            if (name == 'main') res[1] = true;
+                            if (name == 'react') res[2] = false;
+                        }
+                        return res[0]&&res[1]&&res[2];
+                    },
+                    name: 'ng-vendor',
+                    chunks: 'all'
+                },
+                reactVendor: {
+                    test: (module, chunks) => {
+                        const names = chunks
+                            .map(c => c.name)
+                            .concat(module.nameForCondition ? [module.nameForCondition()] : [])
+                            .filter(Boolean);
+                        
+                        let res = [false, true, false];
+                        for (const name of names) {
+                            if (name.indexOf('node_modules') > -1) res[0] = true;
+                            if (name == 'main') res[1] = false;
+                            if (name == 'react') res[2] = true;
+                        }
+                        return res[0]&&res[1]&&res[2];
+                    },
+                    name: 'react-vendor',
+                    chunks: 'initial'
+                },
                 commons: {
-                    test: /node_modules/,
-                    name: 'vendor',
+                    test: (module, chunks) => {
+                        const names = chunks
+                            .map(c => c.name)
+                            .concat(module.nameForCondition ? [module.nameForCondition()] : [])
+                            .filter(Boolean);
+                        
+                        let res = [false, false, false];
+                        for (const name of names) {
+                            if (name.indexOf('node_modules') > -1) res[0] = true;
+                            if (name == 'main') res[1] = true;
+                            if (name == 'react') res[2] = true;
+                        }
+                        return res[0]&&res[1]&&res[2];
+                    },
                     chunks: 'initial',
-                    minSize: 1
+                    name: 'commons'
                 }
             }
         }
@@ -107,7 +150,7 @@ module.exports = {
             use: [{
                 loader: 'babel-loader',
                 options: {
-                    presets: ['@babel/preset-react']
+                    presets: ['@babel/preset-react', '@babel/preset-env']
                 }
             }]
         }]
