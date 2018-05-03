@@ -570,10 +570,6 @@
   version "5.0.17"
   resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.17.tgz#c85d422b1e9a45df885be8b84f9b7f53233a7973"
 
-"@uirouter/core@5.0.3":
-  version "5.0.3"
-  resolved "https://registry.yarnpkg.com/@uirouter/core/-/core-5.0.3.tgz#e2b5b1e45190e20c67ba4e15c013de5d4e0ccab3"
-
 abbrev@1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/abbrev/-/abbrev-1.1.1.tgz#f8f2c887ad10bf67f634f005b6987fed3179aac8"
@@ -655,45 +651,23 @@ amdefine@>=0.0.4:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/amdefine/-/amdefine-1.0.1.tgz#4a5282ac164729e93619bcfd3ad151f817ce91f5"
 
-angular-animate@1.5.1:
-  version "1.5.1"
-  resolved "https://registry.yarnpkg.com/angular-animate/-/angular-animate-1.5.1.tgz#e2b39d9a43b660e8913101e484c46e41738371c0"
-
-angular-base64@^2.0.5, angular-base64@~2.0.5:
+angular-base64@^2.0.5:
   version "2.0.5"
   resolved "https://registry.yarnpkg.com/angular-base64/-/angular-base64-2.0.5.tgz#13255562ad1c8e8ca09b9c4b1f4ef966ac4cd093"
   dependencies:
     angular ">= 1.0.8"
 
-angular-bootstrap@~1.2.5:
-  version "0.12.2"
-  resolved "https://registry.yarnpkg.com/angular-bootstrap/-/angular-bootstrap-0.12.2.tgz#de9900a7db087a7e9da47304a9c2f77f9c069827"
-
 angular-cookies@^1.6.9:
   version "1.6.10"
   resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.6.10.tgz#20a014d501242e2edacd21397c0e5480e08dee00"
-
-angular-cookies@~1.5.1:
-  version "1.5.11"
-  resolved "https://registry.yarnpkg.com/angular-cookies/-/angular-cookies-1.5.11.tgz#88558de7c5044dcc3abeb79614d7ef8107ba49c0"
 
 angular-ui-bootstrap@^2.5.6:
   version "2.5.6"
   resolved "https://registry.yarnpkg.com/angular-ui-bootstrap/-/angular-ui-bootstrap-2.5.6.tgz#23937322ec641a6fbee16498cc32452aa199e7c5"
 
-angular-ui-router@ui-router#~0.2.18:
-  version "1.0.3"
-  resolved "https://registry.yarnpkg.com/angular-ui-router/-/angular-ui-router-1.0.3.tgz#bf2494caae95c37cf01af3761d89747cfed2db45"
-  dependencies:
-    "@uirouter/core" "5.0.3"
-
 "angular@>= 1.0.8":
   version "1.6.10"
   resolved "https://registry.yarnpkg.com/angular/-/angular-1.6.10.tgz#eed3080a34d29d0f681ff119b18ce294e3f74826"
-
-angular@angularjs#~1.5.1:
-  version "1.7.0-rc.0"
-  resolved "https://registry.yarnpkg.com/angular/-/angular-1.7.0-rc.0.tgz#b8caed50875510ab14f7ee2eeed0a3c44a3d84d8"
 
 angularjs@^0.0.1:
   version "0.0.1"
@@ -1684,13 +1658,9 @@ boom@5.x.x:
   dependencies:
     hoek "4.x.x"
 
-bootstrap@3.3.7, bootstrap@~3.3:
+bootstrap@3.3.7:
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-3.3.7.tgz#5a389394549f23330875a3b150656574f8a9eb71"
-
-bootstrapvalidator@~0.5.3:
-  version "0.5.4"
-  resolved "https://registry.yarnpkg.com/bootstrapvalidator/-/bootstrapvalidator-0.5.4.tgz#1dbe314861c553e194aaae7c85b510522e7bb027"
 
 brace-expansion@^1.1.7:
   version "1.1.11"
@@ -2215,10 +2185,6 @@ component-emitter@^1.2.1:
 component-indexof@0.0.3:
   version "0.0.3"
   resolved "https://registry.yarnpkg.com/component-indexof/-/component-indexof-0.0.3.tgz#11d091312239eb8f32c8f25ae9cb002ffe8d3c24"
-
-components-font-awesome@~4.6.1:
-  version "4.6.3"
-  resolved "https://registry.yarnpkg.com/components-font-awesome/-/components-font-awesome-4.6.3.tgz#52435b352a529e5781293641f00a3facf1f67e63"
 
 compressible@~2.0.13:
   version "2.0.13"
@@ -3457,23 +3423,6 @@ from2@^2.1.0, from2@^2.1.1:
     inherits "^2.0.1"
     readable-stream "^2.0.0"
 
-"front-tb-ui@git+ssh://git@gitlab.testbird.io:frontend/front-tb-ui.git#npm":
-  version "0.0.1"
-  resolved "git+ssh://git@gitlab.testbird.io:frontend/front-tb-ui.git#910e95745b65647eac91e1ffa8e3353a845e6f77"
-  dependencies:
-    angular angularjs#~1.5.1
-    angular-animate "1.5.1"
-    angular-base64 "~2.0.5"
-    angular-bootstrap "~1.2.5"
-    angular-cookies "~1.5.1"
-    angular-ui-router ui-router#~0.2.18
-    bootstrap "~3.3"
-    bootstrapvalidator "~0.5.3"
-    components-font-awesome "~4.6.1"
-    jquery "~2.2.2"
-    lodash "~4.9.0"
-    raven-js "~2.3.0"
-
 fs-minipass@^1.2.5:
   version "1.2.5"
   resolved "https://registry.yarnpkg.com/fs-minipass/-/fs-minipass-1.2.5.tgz#06c277218454ec288df77ada54a03b8702aacb9d"
@@ -4530,10 +4479,6 @@ jquery@^3.3.1:
   version "3.3.1"
   resolved "https://registry.yarnpkg.com/jquery/-/jquery-3.3.1.tgz#958ce29e81c9790f31be7792df5d4d95fc57fbca"
 
-jquery@~2.2.2:
-  version "2.2.4"
-  resolved "https://registry.yarnpkg.com/jquery/-/jquery-2.2.4.tgz#2c89d6889b5eac522a7eea32c14521559c6cbf02"
-
 js-base64@^2.1.8, js-base64@^2.1.9:
   version "2.4.3"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.3.tgz#2e545ec2b0f2957f41356510205214e98fad6582"
@@ -4870,10 +4815,6 @@ lodash.uniq@^4.5.0:
 lodash@^4.0.0, lodash@^4.13.1, lodash@^4.14.0, lodash@^4.16.5, lodash@^4.17.2, lodash@^4.17.3, lodash@^4.17.4, lodash@^4.17.5, lodash@^4.2.0, lodash@^4.3.0, lodash@~4.17.4:
   version "4.17.10"
   resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.10.tgz#1b7793cf7259ea38fb3661d4d38b3260af8ae4e7"
-
-lodash@~4.9.0:
-  version "4.9.0"
-  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.9.0.tgz#4c20d742f03ce85dc700e0dd7ab9bcab85e6fc14"
 
 log-symbols@^1.0.2:
   version "1.0.2"
@@ -6368,10 +6309,6 @@ randomfill@^1.0.3:
 range-parser@^1.0.3, range-parser@~1.2.0:
   version "1.2.0"
   resolved "https://registry.yarnpkg.com/range-parser/-/range-parser-1.2.0.tgz#f49be6b487894ddc40dcc94a322f611092e00d5e"
-
-raven-js@~2.3.0:
-  version "2.3.0"
-  resolved "https://registry.yarnpkg.com/raven-js/-/raven-js-2.3.0.tgz#bea069b3b18b58d1253cf84b6d48ab7159726286"
 
 raw-body@2.3.2:
   version "2.3.2"

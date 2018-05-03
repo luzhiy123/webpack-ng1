@@ -21,7 +21,7 @@
     @babel/preset-react' '@babel/preset-env
 - [x] 组件依赖
     front-tb-ui依赖 lodash、angular-base64、angular-cookies、angular-ui-bootstrap以及bootstrap的css
-    front-tb-ui 为公司内部组建
+    front-tb-ui 为公司内部组建（master分支去掉）
 - [x] cacheGroups分离  
     打包思路：
         1、分离出node_modules中代码
