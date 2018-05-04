@@ -18,7 +18,8 @@ module.exports = merge(common, {
             '/static': apiService,
             '/media/contents': apiService,
             '/favicon.ico': apiService
-        }
+        },
+        port: 8080
     },
     plugins: [
         new webpack.NamedModulesPlugin(),

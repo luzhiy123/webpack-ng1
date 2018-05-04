@@ -1,15 +1,16 @@
 {
- 
     "version": "0.2.0",
     "configurations": [
-      
         {
-
+            "name": "debug webpack",
             "type": "node",
-            "protocol": "inspector",
-            "request": "attach",
-            "name": "Attach to Process",
-            "address": "127.0.0.1",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "runtimeExecutable": "npm",
+            "runtimeArgs": [
+                "run-script",
+                "debug"
+            ],
             "port": 9229
         }
     ]
