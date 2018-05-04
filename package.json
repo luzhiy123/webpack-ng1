@@ -28,6 +28,7 @@
     "@babel/preset-env": "^7.0.0-beta.42",
     "@babel/preset-react": "^7.0.0-beta.46",
     "babel-loader": "8.0.0-beta.0",
+    "babel-plugin-import": "^1.7.0",
     "clean-webpack-plugin": "^0.1.19",
     "css-loader": "^0.28.10",
     "csv-loader": "^2.1.1",

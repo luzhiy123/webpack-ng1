@@ -44,7 +44,7 @@ module.exports = {
                             if (name == 'main') res[1] = true;
                             if (name == 'react') res[2] = false;
                         }
-                        return res[0]&&res[1]&&res[2];
+                        return res[0] && res[1] && res[2];
                     },
                     name: 'ng-vendor',
                     chunks: 'all'
@@ -55,14 +55,14 @@ module.exports = {
                             .map(c => c.name)
                             .concat(module.nameForCondition ? [module.nameForCondition()] : [])
                             .filter(Boolean);
-                        
+
                         let res = [false, true, false];
                         for (const name of names) {
                             if (name.indexOf('node_modules') > -1) res[0] = true;
                             if (name == 'main') res[1] = false;
                             if (name == 'react') res[2] = true;
                         }
-                        return res[0]&&res[1]&&res[2];
+                        return res[0] && res[1] && res[2];
                     },
                     name: 'react-vendor',
                     chunks: 'initial'
@@ -73,14 +73,14 @@ module.exports = {
                             .map(c => c.name)
                             .concat(module.nameForCondition ? [module.nameForCondition()] : [])
                             .filter(Boolean);
-                        
+
                         let res = [false, false, false];
                         for (const name of names) {
                             if (name.indexOf('node_modules') > -1) res[0] = true;
                             if (name == 'main') res[1] = true;
                             if (name == 'react') res[2] = true;
                         }
-                        return res[0]&&res[1]&&res[2];
+                        return res[0] && res[1] && res[2];
                     },
                     chunks: 'initial',
                     name: 'commons'
@@ -150,6 +150,21 @@ module.exports = {
             use: [{
                 loader: 'babel-loader',
                 options: {
+                    plugins: [
+                        [
+                            'import',
+                            {
+                                'libraryName': 'antd',
+                                'libraryDirectory': 'es',
+                                'style': 'css'
+                            },
+                            {
+                                'libraryName': 'lodash',
+                                'libraryDirectory': '',
+                                'camel2DashComponentName': false
+                            }
+                        ]
+                    ],
                     presets: ['@babel/preset-react', '@babel/preset-env']
                 }
             }]
