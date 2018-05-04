@@ -157,11 +157,6 @@ module.exports = {
                                 'libraryName': 'antd',
                                 'libraryDirectory': 'es',
                                 'style': 'css'
-                            },
-                            {
-                                'libraryName': 'lodash',
-                                'libraryDirectory': '',
-                                'camel2DashComponentName': false
                             }
                         ]
                     ],
