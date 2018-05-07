@@ -29,5 +29,5 @@ angular
         $urlRouterProvider.otherwise('/ng');
     })
     .run( /* @ngInject */ ($rootScope) => {
-        $rootScope.name = 'ng1';
+        $rootScope.name = 'ng2';
     });
